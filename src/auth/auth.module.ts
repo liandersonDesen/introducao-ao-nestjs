@@ -4,9 +4,10 @@ import { AuthController } from './auth.controller';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { JwtModule, JwtService } from '@nestjs/jwt';
 import { JwtStrategy } from './jwt.strategy';
+import { GoogleService } from './google-auth.service';
 
 @Module({
-  providers: [AuthService,PrismaService,JwtStrategy],
+  providers: [AuthService,PrismaService,GoogleService,JwtStrategy],
   controllers: [AuthController],
   imports:[
     JwtModule.register({

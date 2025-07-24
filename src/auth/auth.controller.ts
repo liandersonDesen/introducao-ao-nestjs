@@ -4,11 +4,12 @@ import { AuthService } from './auth.service';
 import { ApiBody, ApiConflictResponse, ApiCreatedResponse, ApiResponse } from '@nestjs/swagger';
 import { LoginDto } from './dto/login.dto';
 import { LoginReponseDto } from './dto/login-response.dto';
+import { GoogleService } from './google-auth.service';
 
 @Controller('auth')
 export class AuthController {
 
-    constructor(private authService:AuthService){}
+    constructor(private authService:AuthService, private googleService:GoogleService){}
 
     @Post('register')
     @ApiBody({type:RegisterUserDto})
@@ -25,5 +26,11 @@ export class AuthController {
 
         return this.authService.login(Credentials)
 
+    }
+    @Post('google')
+    async loginWithGoogle(@Body() Body:{idToken:string}){
+        const acess_token = await this.googleService.verify(Body.idToken)
+
+        return {acess_token}
     }
 }
