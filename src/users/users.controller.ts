@@ -2,7 +2,7 @@ import { Controller, Get, Post, Put, Delete, Param, Body, ConflictException, Use
 import { UsersService } from './users.service'
 import { createUserDto } from './user.dto';
 import { ApiBearerAuth, ApiBody, ApiOperation, ApiParam, ApiResponse } from '@nestjs/swagger';
-import { JwtAuthGuard } from 'src/auth/jwt.guard';
+import { JwtAuthGuard } from '../auth/jwt.guard';
 @ApiBearerAuth()
 @UseGuards(JwtAuthGuard)
 @Controller('users')
