@@ -74,11 +74,9 @@ export class PlaceController {
         if (!files.images || files.images.length === 0) {
             throw new BadRequestException('Pelo menos uma imagem deve ser enviada.');
         }
-/*
         const imageUrls = await Promise.all(
             files.images.map((file) => this.cloudinaryService.uploadImage(file.buffer)),
         );
-*/
         return this.placeService.create({
             ...data,
             images: [], // Aqui você injeta as URLs para salvar
@@ -125,5 +123,5 @@ export class PlaceController {
      @ApiResponse({ status: 200, description: 'Place deletado com sucesso' })
     async deletePlace(@Param('id') id: string) {
         return this.placeService.delete(id);
-    }
+    }[7]
 }
